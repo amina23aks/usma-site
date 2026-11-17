@@ -1,78 +1,95 @@
-# USM Alger Club Website Demo
+# USM Alger Website Demo
 
-A private, responsive club website concept. The MVP covers editorial news and matches, squad and player profiles, club history and trophies, sponsors, and a merchandise preview. Club facts, branding, and photography require verified sources or approval before official publication.
+A responsive website concept for USM Alger. The demo covers club news,
+fixtures and results, squad and player profiles, club history and trophies,
+sponsors, and a merchandise preview. The admin area will support editorial
+publishing and match updates.
 
-## Current state
+Use clearly labelled demo content and approved assets or placeholders.
+Verify club facts and confirm permission to use official branding, player
+photos, and sponsor assets before public release. Checkout, payments, and
+customer accounts belong to the separate store project.
 
-The Next.js starter has run locally on Windows. Database integration, authentication, and deployment should be recorded here after verification.
+## Project status
+
+- The Next.js starter runs locally on Windows.
+- The repository is on GitHub and has been deployed to Vercel.
+- The USMA homepage, application database connection, and admin workflows
+  are planned.
+- The Vercel production branch and demo access settings still need to be
+  recorded after verification.
+
+Update this section as each milestone is verified.
 
 ## Local development
 
-Open the project root in VS Code. Use Node.js 24 LTS and npm. On a fresh checkout with the committed lockfile, run:
+Use Node.js 24 LTS and npm. On a fresh checkout with the committed lockfile,
+open PowerShell in the repository root and run:
 
-```powershell
-npm ci
-npm run dev
-```
+    npm ci
+    npm run dev
 
-Open the URL printed by the terminal, normally http://localhost:3000. Use Ctrl+C to stop the server. Check package.json for available scripts and run npm run build before submitting a release candidate.
+Open the URL printed in the terminal, usually http://localhost:3000.
+Use Ctrl+C to stop the development server.
 
-## Environment and database
+Check `package.json` for the available lint, type-check, and test commands.
+Run `npm run build` to check the production build.
 
-- Local: PostgreSQL 18 on localhost:5432. Create usma_dev for this app. usma_training and usma_restore_test are practice databases.
-- Preview: a hosted PostgreSQL database with demo data. Scope credentials to Preview in Vercel and redeploy after changing variables.
-- Production: configure dedicated credentials and database when preparing the official release.
+## Stack and environments
 
-When Prisma is integrated, copy .env.example to the local filename specified by the implementation. Enter the real connection string locally. Store secrets outside Git. Document the verified migration, client generation, and seed commands here after setup.
+- Foundation: Next.js App Router, TypeScript, Tailwind CSS, and npm.
+- Planned data layer: PostgreSQL, Prisma migrations, and server-side Zod
+  validation.
+- Planned admin authentication: Auth.js with an established provider.
+- Local development: PostgreSQL 18 on `localhost:5432`. The application
+  database is `usma_dev`. Verify the connection during the Prisma task.
+- Vercel Preview: a separate hosted PostgreSQL database with demo data.
+- Official production: dedicated credentials and a separate database,
+  configured when the owner approves the release.
 
-## Review workflow
+The homepage foundation requires no database credentials. During the
+Prisma task, document the required variables and placeholder values in
+`.env.example`. Record the actual local environment filename and verified
+migration, client generation, and seed commands.
 
-Feature branch → PR to main → Vercel Preview → owner acceptance → owner merge. Check how main maps to Production before merging. Protect demo access independently of search indexing.
+Enter real secrets in the documented local environment file or in the
+appropriate Vercel environment. Keep secrets, database URLs, and database
+backup files out of Git.
 
-## Acceptance checks
+## Review and deployment
 
-- Save a draft and verify it persists in admin. A visitor cannot read it from a listing or direct URL.
-- Publish, edit, and unpublish the same article. Verify the public result in a separate visitor session.
-- Update a match score and verify the home and match pages. Check that the server rejects a negative score.
-- Check phone and desktop layout, image cropping, keyboard focus, and reduced motion.
-- When testing a backup, restore to a separate database and compare row counts plus sample records.
+Work on a feature branch and open a pull request targeting `main`.
+The owner reviews the Vercel Preview on a phone and desktop, then merges.
 
-See AGENTS.md for implementation and handoff rules.
+Before sharing a demo URL, verify access protection in a browser signed out
+of Vercel. Apply `noindex` to deployments that are still demos, including
+the Production URL if it serves the demo. Access protection controls who
+can open the site. Indexing directives guide search engines.
 
+Record which branch deploys to Production, which URLs a merge updates, and
+how the demo is protected. Mark each item as pending until verified.
+The owner controls when the official site becomes public.
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+## Milestones and acceptance
 
-## Getting Started
+1. **Homepage foundation.** Verify the Arabic RTL layout, working
+   navigation, useful 404 page, readable typography, and easy-to-find
+   latest score and next kickoff on a narrow phone.
+2. **Database integration.** Verify the local application connects to
+   `usma_dev` and Vercel Preview connects to a separate hosted database
+   with demo data. Verify the migrations against their intended targets.
+3. **News workflow.** Sign in, save a draft, publish it, and unpublish it.
+   Check the public listing and direct URL in a separate visitor session.
+   A draft or unpublished article returns 404 on its public URL. If the
+   saved status needs confirmation, use a read-only pgAdmin query against
+   the database used by the environment under test.
+4. **Match workflow.** Update a score and verify it on the homepage and
+   match centre. A `0–0` result is a valid score. An unknown score and an
+   unknown kickoff have clear display states. The server rejects negative
+   scores.
+5. **Club pages and demo readiness.** Review news and player pages,
+   history and trophies, sponsors, and merchandise links. Check image
+   crops, keyboard navigation, reduced motion, and demo access. Restore
+   a backup to a separate database and verify row counts and sample records.
 
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+See `AGENTS.md` for implementation and handoff instructions.

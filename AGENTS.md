@@ -1,28 +1,3 @@
-# USMA repository instructions
-
-Append this project guidance below the existing Next.js managed block. Preserve the generated block and its markers verbatim.
-
-## Working agreement
-
-Read README.md, package.json, the lockfile, applicable repository instructions, and relevant documentation bundled with the installed Next.js version. Inspect git status and preserve user changes. Work on one reviewable outcome per branch. Use npm and the existing lockfile. Explain new dependencies and architectural tradeoffs. Open a PR targeting main when repository access permits. The owner reviews the Vercel Preview and merges. Leave production settings and releases to the owner.
-
-## Product and visual direction
-
-Build a private USM Alger club demo with news, matches, squad, player profiles, history and trophies, sponsors, a merchandise preview, and an admin workflow. Use clearly labeled fictional fixtures and approved imagery or placeholders. Start with a temporary wordmark. Checkout, payments, and customer data belong to the separate store.
-
-Use a sports editorial layout with charcoal, warm white, and a restrained red accent. Establish a consistent type scale, spacing rhythm, image ratios, and visible focus styles. Translate references into specific decisions such as image crop, layout, or interaction. Keep score and kickoff close to the top on phones. Use readable line lengths on articles and clear forms in admin. Support RTL when rendering Arabic, keyboard navigation, and reduced motion. Start with CSS transitions and consider Motion or GSAP for a specific interaction.
-
-## Application, data, and security
-
-Use Next.js App Router, TypeScript, Tailwind, PostgreSQL, Prisma, and server-side Zod validation. Select an established admin authentication provider and document the account setup when the admin slice begins. Keep role checks on the server for every protected read and mutation. Test anonymous and unauthorized access, including direct draft URLs. Use parameterized database access, render editorial text safely, and review session, CSRF, rate limiting, and upload protections where relevant.
-
-Keep the runtime connection server-only and use least-privilege database credentials. Document required variables with placeholder values in .env.example. Keep local secrets out of Git, logs, and client bundles. Use usma_dev locally and a separate hosted Preview database. Keep the training databases available for exercises. Review and commit migrations. State the target before applying them. Preserve existing data and test restoration in a separate database. Start with simple public reads. If caching is added, test publish, unpublish, and score updates across visitor sessions.
-
-## Acceptance and handoff
-
-Run the repository's lint, typecheck, build, and relevant tests. Add coverage for critical behaviors introduced by the change. Check browser layout at narrow mobile and desktop widths. Report failures and untested paths explicitly. Deliver the PR or commit, working Preview when available, manual steps and expected outcomes, and any configuration or migration work. Ask the owner to check pgAdmin only when useful, with the target database and a read-only query.
-
-
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -59,3 +34,89 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+# USM Alger project instructions
+
+## Workflow
+
+- Read `README.md`, `package.json`, the lockfile, and the applicable
+  repository instructions before editing. Consult the documentation
+  bundled with the installed Next.js version for the APIs being changed.
+- Inspect Git status and preserve the owner's existing changes.
+- Keep each PR focused on one reviewable outcome. If the work expands
+  into another feature, propose a follow-up PR. Reuse existing patterns
+  and explain the purpose and impact of any new dependency.
+- Work on a feature branch and prepare a PR targeting `main` when
+  repository access permits. The owner tests the Vercel Preview and
+  merges. The owner controls deployment protection, Production settings,
+  and the public release.
+- Report which URLs a merge to `main` would update when verifiable.
+  Keep demo deployments marked `noindex`, including any Production URL
+  that still serves a demo. Verify access protection separately and
+  report any settings that require the owner's action.
+
+## Design and accessibility
+
+- Create an original football editorial identity with charcoal, warm
+  white, restrained red accents, and readable Arabic typography. Use
+  spacing, photography, and type hierarchy consistently.
+- Use Arabic and RTL for the first design pass. Apply the appropriate
+  language and text direction. Keep navigation and match information
+  easy to scan on a narrow phone.
+- Give each page a layout suited to its purpose. Use a stadium-led hero
+  and a clear score strip on the homepage, a comfortable reading column
+  for articles, and clear statuses and predictable actions in admin.
+- Use working navigation links, a useful 404 page, and clear empty,
+  loading, or error states where they apply.
+- Use a temporary wordmark and approved images or intentional
+  placeholders. Label fictional club content as demo data.
+- Check long Arabic titles, image crops, contrast, visible keyboard focus,
+  and reduced-motion preferences. Start with CSS transitions. Consider
+  Motion or GSAP when a specific interaction warrants it.
+- When the owner provides a reference, use the specific layout or
+  interaction requested and adapt it to the USMA design.
+
+## Data and admin
+
+- Use `usma_dev` locally and a separate hosted PostgreSQL database for
+  Vercel Preview. Keep demo data separate from official data. Before
+  running a migration, state the target database and the intended change.
+  Commit reviewed migration files and document how to verify them.
+- Keep database access and credentials on the server. Use least-privilege
+  application credentials. Document placeholder values in `.env.example`
+  and keep real secrets out of Git, client bundles, and logs.
+- Prefer Auth.js with an established provider. Explain the tradeoffs and
+  get the owner's decision before changing the authentication approach.
+- Verify the session and role on the server for every protected read and
+  write. Enforce authorization inside each Server Action or Route Handler
+  that writes data, using shared authorization logic where appropriate.
+  Middleware can provide an additional check.
+- Validate input on the server with Zod as features are implemented.
+  Use safe database access and safe editorial rendering. Review session
+  protections and login rate limits when adding authentication.
+- Add automated coverage as the relevant features are implemented:
+  reject anonymous and unauthorized writes, hide drafts and unpublished
+  articles from public listings, return 404 on their public article URLs,
+  exclude them from the sitemap if one exists, and reject invalid scores.
+- Verify publishing, unpublishing, and score changes in a separate visitor
+  session. If caching is enabled, refresh the affected data or routes and
+  test that public views reflect the changes.
+- Obtain explicit owner approval before any destructive database
+  operation, including a reset, a forced schema push that can cause data
+  loss, or a drop. State the target and expected impact first. Use a
+  disposable test database for destructive experiments.
+- Defer image uploads until the owner approves the scope. When added,
+  verify upload authorization, file type, size limits, and storage policy.
+
+## Verification and handoff
+
+- Run the available lint, type checks, production build, and tests
+  relevant to the change. Review the changed flow in a browser at
+  narrow mobile and desktop widths when possible.
+- Report what passed, what could not be verified, and any assumptions.
+  Include the PR and Vercel Preview link when available.
+- Give the owner three to five acceptance checks and expected results.
+  If pgAdmin is useful, name the database and provide a read-only query.
+  Document manual Windows, GitHub, or Vercel steps with their expected
+  outcomes.
+- Update `README.md` with verified project status and commands.
