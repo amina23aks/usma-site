@@ -14,8 +14,9 @@ customer accounts belong to the separate store project.
 
 - The Next.js starter runs locally on Windows.
 - The repository is on GitHub and has been deployed to Vercel.
-- The USMA homepage, application database connection, and admin workflows
-  are planned.
+- The Arabic RTL demo homepage and 404 page are implemented with fictional
+  match data and original CSS illustrations. The application database and
+  admin workflows are planned.
 - The Vercel production branch and demo access settings still need to be
   recorded after verification.
 
@@ -32,8 +33,9 @@ open PowerShell in the repository root and run:
 Open the URL printed in the terminal, usually http://localhost:3000.
 Use Ctrl+C to stop the development server.
 
-Check `package.json` for the available lint, type-check, and test commands.
-Run `npm run build` to check the production build.
+Run `npm run lint`, `npx tsc --noEmit`, and `npm run build` to check the
+project. No test script is currently configured. The demo uses system fonts
+and needs no database credentials or external image service.
 
 ## Stack and environments
 
@@ -93,3 +95,21 @@ The owner controls when the official site becomes public.
    a backup to a separate database and verify row counts and sample records.
 
 See `AGENTS.md` for implementation and handoff instructions.
+
+## Planned routes
+
+Only the homepage (`/`) and the not-found page are implemented in this
+foundation. The following paths are proposed for later work; they are not
+live links yet:
+
+- `/news` and `/news/[slug]`: news listing and articles.
+- `/matches`: fixtures and results.
+- `/squad` and `/players/[slug]`: squad and player profiles.
+- `/history`: club history and trophies.
+- `/sponsors`: sponsors.
+- `/merchandise`: merchandise preview.
+- `/admin`: editorial and match administration.
+
+The demo emits `noindex, nofollow` metadata. This is an indexing directive,
+not access protection; Vercel protection and production-branch settings
+remain to be verified by the owner.
