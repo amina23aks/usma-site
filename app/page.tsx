@@ -1,31 +1,5 @@
-const stories = [
-  {
-    category: "Supporters",
-    title: "Les tribunes donnent le tempo.",
-    description:
-      "Une ville, des milliers de voix et les mêmes couleurs. Un récit de démonstration au plus près de la passion.",
-    image: "crowd",
-  },
-  {
-    category: "Équipe première",
-    title: "Le collectif se construit chaque jour.",
-    description: "Une immersion fictive dans la préparation du groupe.",
-    image: "player",
-  },
-  {
-    category: "Le club",
-    title: "Les émotions se transmettent.",
-    description: "Un regard sur les souvenirs qui nous rassemblent.",
-    image: "trophy",
-  },
-];
-
-const squad = [
-  { name: "N. Amrani", number: "1", position: "Gardien" },
-  { name: "S. Rahal", number: "4", position: "Défenseur" },
-  { name: "M. Ziane", number: "8", position: "Milieu" },
-  { name: "I. Mansour", number: "11", position: "Attaquant" },
-];
+import Link from "next/link";
+import { stories, squad } from "@/lib/demo-content";
 
 export default function Home() {
   return (
@@ -42,9 +16,9 @@ export default function Home() {
           <p>
             Des tribunes au terrain, une passion qui traverse les générations.
           </p>
-          <a className="button" href="#actualites">
+          <Link className="button" href="/actualites">
             Au cœur du club
-          </a>
+          </Link>
         </div>
         <span className="hero-credit">Image conceptuelle générée</span>
       </section>
@@ -92,13 +66,14 @@ export default function Home() {
             <p className="eyebrow red">Dans la vie du club</p>
             <h2 id="news-title">À la une.</h2>
           </div>
-          <p className="muted section-description">
-            Le terrain, les tribunes et les histoires qui font battre Alger.
-          </p>
+          <Link className="text-link" href="/actualites">
+            Toutes les actualités
+          </Link>
         </div>
         <div className="news-grid">
-          {stories.map((story, index) => (
-            <article
+          {stories.slice(0, 3).map((story, index) => (
+            <Link
+              href={`/actualites/${story.slug}`}
               className={`news-card ${index === 0 ? "lead-story" : ""}`}
               key={story.title}
             >
@@ -113,7 +88,7 @@ export default function Home() {
                 <p className="muted">{story.description}</p>
                 <span className="small muted">Récit fictif · Édition démo</span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
       </section>
@@ -129,13 +104,17 @@ export default function Home() {
               <p className="eyebrow">Un même maillot</p>
               <h2 id="squad-title">Équipe première.</h2>
             </div>
-            <p className="small muted">
-              Identités fictives · Portrait conceptuel partagé
-            </p>
+            <Link className="text-link" href="/equipe">
+              Tout l’effectif
+            </Link>
           </div>
           <div className="squad-grid">
             {squad.map((player) => (
-              <article className="player-card" key={player.number}>
+              <Link
+                className="player-card"
+                key={player.number}
+                href={`/equipe/${player.slug}`}
+              >
                 <div
                   className="editorial-photo player player-photo"
                   role="img"
@@ -147,7 +126,7 @@ export default function Home() {
                   <h3>{player.name}</h3>
                   <p className="small muted">{player.position}</p>
                 </div>
-              </article>
+              </Link>
             ))}
           </div>
         </div>
@@ -176,9 +155,9 @@ export default function Home() {
               se transmet. Un espace pour raconter les grandes périodes du club
               avec des archives et des témoignages vérifiés.
             </p>
-            <a className="button outline" href="#palmares">
-              Découvrir l’esprit du musée
-            </a>
+            <Link className="button outline" href="/histoire">
+              Explorer notre histoire
+            </Link>
           </div>
         </div>
       </section>
@@ -200,9 +179,9 @@ export default function Home() {
               Un musée à imaginer, une histoire à documenter. Les trophées et
               leurs récits prendront place ici, après vérification des sources.
             </p>
-            <span className="small muted">
-              Trophée conceptuel · Palmarès à confirmer
-            </span>
+            <Link className="button outline light-button" href="/palmares">
+              Explorer le musée
+            </Link>
           </div>
           <div
             className="editorial-photo trophy feature-photo"
@@ -226,10 +205,9 @@ export default function Home() {
               au quotidien.
             </h2>
           </div>
-          <p className="muted section-description">
-            Une sélection conceptuelle. La boutique indépendante sera reliée
-            lorsqu’elle sera disponible.
-          </p>
+          <Link className="text-link" href="/boutique">
+            Découvrir la sélection
+          </Link>
         </div>
         <div className="product-grid">
           {[

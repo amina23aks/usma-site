@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import localFont from "next/font/local";
+import SiteHeader from "@/components/site-header";
 import "./globals.css";
 
 const headings = localFont({
@@ -28,15 +29,6 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const navigation = [
-  ["actualites", "Actualités"],
-  ["matchs", "Matchs"],
-  ["equipe", "Équipe"],
-  ["histoire", "Histoire"],
-  ["palmares", "Palmarès"],
-  ["boutique", "Boutique"],
-];
-
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html
@@ -51,31 +43,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <div className="prototype-notice">
           Concept indépendant · Images générées, personnes et contenus fictifs
         </div>
-        <header className="site-header">
-          <div className="wrap header-inner">
-            <Link className="brand" href="/" aria-label="USM Alger, accueil">
-              USM <span>ALGER</span>
-              <small>LE CLUB DE LA CAPITALE · CONCEPT</small>
-            </Link>
-            <nav className="desktop-nav" aria-label="Navigation principale">
-              {navigation.map(([id, label]) => (
-                <Link href={`/#${id}`} key={id}>
-                  {label}
-                </Link>
-              ))}
-            </nav>
-            <details className="mobile-menu">
-              <summary>Menu</summary>
-              <nav aria-label="Navigation mobile">
-                {navigation.map(([id, label]) => (
-                  <Link href={`/#${id}`} key={id}>
-                    {label}
-                  </Link>
-                ))}
-              </nav>
-            </details>
-          </div>
-        </header>
+        <SiteHeader />
         {children}
         <footer className="site-footer">
           <div className="wrap footer-grid">
@@ -91,14 +59,16 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
             </div>
             <div>
               <h2>Explorer</h2>
-              <Link href="/#actualites">Actualités</Link>
-              <Link href="/#equipe">Équipe première</Link>
-              <Link href="/#histoire">Histoire du club</Link>
+              <Link href="/actualites">Actualités</Link>
+              <Link href="/equipe">Équipe première</Link>
+              <Link href="/histoire">Histoire du club</Link>
             </div>
             <div>
               <h2>Le projet</h2>
-              <Link href="/#partenaires">Partenaires</Link>
-              <Link href="/#boutique">Boutique à venir</Link>
+              <Link href="/partenaires">Partenaires</Link>
+              <Link href="/boutique">Boutique à venir</Link>
+              <Link href="/contact">Contact</Link>
+              <Link href="/admin">Administration — maquette</Link>
               <p className="small">
                 Identité provisoire.
                 <br />

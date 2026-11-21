@@ -14,9 +14,9 @@ customer accounts belong to the separate store project.
 
 - The Next.js starter runs locally on Windows.
 - The repository is on GitHub and has been deployed to Vercel.
-- The French LTR homepage and 404 page use fictional match data and
-  locally stored AI-generated photographic concept assets. The application database and
-  admin workflows are planned.
+- French LTR public pages and an interactive admin UI prototype are implemented
+  with fictional content and locally stored generated images. Database
+  persistence and real admin authentication are planned.
 - The Vercel production branch and demo access settings still need to be
   recorded after verification.
 
@@ -96,30 +96,48 @@ The owner controls when the official site becomes public.
 
 See `AGENTS.md` for implementation and handoff instructions.
 
-## Planned routes
+## Implemented visual routes
 
-Only the homepage (`/`) and the not-found page are implemented in this
-foundation. The following paths are proposed for later work; they are not
-live links yet:
+- `/`: homepage with linked news and player previews.
+- `/actualites` and `/actualites/[slug]`: category filtering and article layouts.
+- `/matchs` and `/matchs/[slug]`: fixtures, results, and match detail pages.
+- `/equipe` and `/equipe/[slug]`: squad groups and player profiles.
+- `/histoire`: selectable editorial chapters.
+- `/palmares`: selectable trophy categories with conceptual descriptions.
+- `/partenaires`: neutral sponsor presentation.
+- `/boutique`: merchandise preview and an explicit unavailable-store state.
+- `/contact`: local form validation and a simulated confirmation.
+- `/admin`: explicitly public UI prototype with local article editing,
+  publishing/unpublishing previews, score editing, and a read-only squad view.
 
-- `/news` and `/news/[slug]`: news listing and articles.
-- `/matches`: fixtures and results.
-- `/squad` and `/players/[slug]`: squad and player profiles.
-- `/history`: club history and trophies.
-- `/sponsors`: sponsors.
-- `/merchandise`: merchandise preview.
-- `/admin`: editorial and match administration.
+The admin prototype is a design review tool. It has no authentication or
+server write endpoint. Its state resets when it is remounted or reloaded,
+and changes do not update the static public pages. The contact form sends
+and stores no data. Real authentication, persistence, uploads, and delivery
+remain future work.
 
-The demo emits `noindex, nofollow` metadata. This is an indexing directive,
-not access protection; Vercel protection and production-branch settings
-remain to be verified by the owner.
+The demo emits `noindex, nofollow`. Verify Vercel access protection separately.
 
 ## Approved homepage direction
 
-The homepage follows the owner-selected Claude prototype with warm off-white surfaces, white bordered cards, 14px image/card corners, 10px buttons, a photographic hero, and an overlapping match strip. It includes news, squad, history, trophy, merchandise, and partner previews. Navigation currently links to homepage sections.
+The homepage follows the owner-selected Claude prototype with warm off-white surfaces, white bordered cards, 14px image/card corners, 10px buttons, a photographic hero, and an overlapping match strip. It includes news, squad, history, trophy, merchandise, and partner previews. Navigation links to the corresponding visual routes.
 
 `public/images/concept-assets.webp` was generated for this demo with OpenAI image generation. It depicts a fictional crowd, player, trophy, and kit. The same portrait and product composition are reused as temporary concept assets. Replace them with approved individual photographs before an official release. No external image or font download is required to build.
 
 The GitHub default branch is `master`. Production branch mapping and Vercel access protection remain to be verified in project settings.
 
 The font files in `app/fonts/` come from Google Fonts and are distributed with their SIL Open Font License files. They are loaded locally through `next/font/local`.
+
+## Remaining delivery stages
+
+1. Approve desktop/mobile layouts and replace repeated concept imagery.
+2. Configure Prisma, migrations, a local `usma_dev` connection, and a separate
+   hosted Preview connection. Verify targets and safe application roles.
+3. Add real admin authentication and authorization tests, then replace the
+   local news simulation with persistent draft/publish/unpublish behaviour.
+4. Connect fixtures and player data; verify cache freshness and validation.
+5. Add approved upload handling if needed. Complete error states, monitoring,
+   backup restoration, and pre-release checks.
+6. Obtain verified content and asset permissions, review public-launch privacy
+   requirements, and prepare indexing and metadata for the approved domain.
+7. Add Arabic RTL and the independent store as separate subsequent scopes.
