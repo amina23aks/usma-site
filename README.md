@@ -14,8 +14,8 @@ customer accounts belong to the separate store project.
 
 - The Next.js starter runs locally on Windows.
 - The repository is on GitHub and has been deployed to Vercel.
-- The Arabic RTL demo homepage and 404 page are implemented with fictional
-  match data and original CSS illustrations. The application database and
+- The French LTR homepage and 404 page use fictional match data and
+  locally stored AI-generated photographic concept assets. The application database and
   admin workflows are planned.
 - The Vercel production branch and demo access settings still need to be
   recorded after verification.
@@ -34,7 +34,7 @@ Open the URL printed in the terminal, usually http://localhost:3000.
 Use Ctrl+C to stop the development server.
 
 Run `npm run lint`, `npx tsc --noEmit`, and `npm run build` to check the
-project. No test script is currently configured. The demo uses system fonts
+project. No test script is currently configured. The demo uses locally hosted Barlow Condensed and Source Sans 3 fonts
 and needs no database credentials or external image service.
 
 ## Stack and environments
@@ -60,7 +60,7 @@ backup files out of Git.
 
 ## Review and deployment
 
-Work on a feature branch and open a pull request targeting `main`.
+Work on a feature branch and open a pull request targeting `master`.
 The owner reviews the Vercel Preview on a phone and desktop, then merges.
 
 Before sharing a demo URL, verify access protection in a browser signed out
@@ -74,7 +74,7 @@ The owner controls when the official site becomes public.
 
 ## Milestones and acceptance
 
-1. **Homepage foundation.** Verify the Arabic RTL layout, working
+1. **Homepage foundation.** Verify the French LTR layout, working
    navigation, useful 404 page, readable typography, and easy-to-find
    latest score and next kickoff on a narrow phone.
 2. **Database integration.** Verify the local application connects to
@@ -113,3 +113,13 @@ live links yet:
 The demo emits `noindex, nofollow` metadata. This is an indexing directive,
 not access protection; Vercel protection and production-branch settings
 remain to be verified by the owner.
+
+## Approved homepage direction
+
+The homepage follows the owner-selected Claude prototype with warm off-white surfaces, white bordered cards, 14px image/card corners, 10px buttons, a photographic hero, and an overlapping match strip. It includes news, squad, history, trophy, merchandise, and partner previews. Navigation currently links to homepage sections.
+
+`public/images/concept-assets.webp` was generated for this demo with OpenAI image generation. It depicts a fictional crowd, player, trophy, and kit. The same portrait and product composition are reused as temporary concept assets. Replace them with approved individual photographs before an official release. No external image or font download is required to build.
+
+The GitHub default branch is `master`. Production branch mapping and Vercel access protection remain to be verified in project settings.
+
+The font files in `app/fonts/` come from Google Fonts and are distributed with their SIL Open Font License files. They are loaded locally through `next/font/local`.
