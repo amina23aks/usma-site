@@ -46,11 +46,11 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Keep each PR focused on one reviewable outcome. If the work expands
   into another feature, propose a follow-up PR. Reuse existing patterns
   and explain the purpose and impact of any new dependency.
-- Work on a feature branch and prepare a PR targeting `main` when
+- Work on a feature branch and prepare a PR targeting `master` when
   repository access permits. The owner tests the Vercel Preview and
   merges. The owner controls deployment protection, Production settings,
   and the public release.
-- Report which URLs a merge to `main` would update when verifiable.
+- Report which URLs a merge to `master` would update when verifiable.
   Keep demo deployments marked `noindex`, including any Production URL
   that still serves a demo. Verify access protection separately and
   report any settings that require the owner's action.
@@ -58,9 +58,9 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 ## Design and accessibility
 
 - Create an original football editorial identity with charcoal, warm
-  white, restrained red accents, and readable Arabic typography. Use
+  white, restrained red accents, and readable French typography. Use
   spacing, photography, and type hierarchy consistently.
-- Use Arabic and RTL for the first design pass. Apply the appropriate
+- Use French and LTR for the first design pass. Keep text organised so Arabic RTL can be added later. Apply the appropriate
   language and text direction. Keep navigation and match information
   easy to scan on a narrow phone.
 - Give each page a layout suited to its purpose. Use a stadium-led hero
@@ -70,7 +70,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
   loading, or error states where they apply.
 - Use a temporary wordmark and approved images or intentional
   placeholders. Label fictional club content as demo data.
-- Check long Arabic titles, image crops, contrast, visible keyboard focus,
+- Check long French titles, image crops, contrast, visible keyboard focus,
   and reduced-motion preferences. Start with CSS transitions. Consider
   Motion or GSAP when a specific interaction warrants it.
 - When the owner provides a reference, use the specific layout or
@@ -120,3 +120,7 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
   Document manual Windows, GitHub, or Vercel steps with their expected
   outcomes.
 - Update `README.md` with verified project status and commands.
+
+## Approved visual reference
+
+Follow the owner-selected Claude prototype for the homepage composition, white card surfaces, 1px warm-grey borders, 14px card radii, 10px button radii, and overlapping match strip. The current concept uses locally stored AI-generated imagery, pending approved club photography.
